@@ -6,17 +6,21 @@ import {
   presetUno,
   presetWebFonts,
   transformerDirectives,
-  transformerVariantGroup
+  transformerVariantGroup,
 } from 'unocss'
 
 export default defineConfig({
   shortcuts: [
-    // ...
+    {
+      btn: 'transition-all duration-200 transform hover:scale-105 active:scale-95 text-white font-medium px-7 py-3 rounded-md',
+    },
+  ],
+  rules: [
   ],
   theme: {
     colors: {
       // ...
-    }
+    },
   },
   presets: [
     presetUno(),
