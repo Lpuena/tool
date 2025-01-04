@@ -1,0 +1,46 @@
+name: Deploy Nuxt to GitHub Pages
+
+on:
+  push:
+    branches: [master] # 触发条件：当推送到 master 分支时
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # 使用最新的 Ubuntu 环境
+
+    steps:
+      # 1. 检出代码
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. 设置 Node.js 环境
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 使用 Node.js 20
+
+      # 3. 安装依赖
+      - name: Install dependencies
+        run: pnpm install
+
+      # 4. 构建项目
+      - name: Build project
+        run: pnpm run generate
+
+      # 5. 上传构建产物
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .output/public # 上传生成的静态文件
+
+  deploy:
+    needs: build # 依赖 build 任务
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      # 6. 部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
