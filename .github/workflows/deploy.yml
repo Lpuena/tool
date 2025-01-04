@@ -19,15 +19,19 @@ jobs:
         with:
           node-version: '20' # 使用 Node.js 20
 
-      # 3. 安装依赖
+      # 3. 安装 pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # 4. 安装依赖
       - name: Install dependencies
         run: pnpm install
 
-      # 4. 构建项目
+      # 5. 构建项目
       - name: Build project
         run: pnpm run generate
 
-      # 5. 上传构建产物
+      # 6. 上传构建产物
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -41,6 +45,6 @@ jobs:
       id-token: write
 
     steps:
-      # 6. 部署到 GitHub Pages
+      # 7. 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
