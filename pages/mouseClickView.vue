@@ -8,16 +8,6 @@ const clickCounts = ref({
   middle: 0,
 })
 
-function clearCounts() {
-  clickCounts.value = {
-    left: 0,
-    right: 0,
-    middle: 0,
-  }
-  currentButton.value = ''
-  showMessage('success', '已清空点击次数')
-}
-
 // 当前点击的按键
 const currentButton = ref('')
 // 添加上次点击时间记录
@@ -48,6 +38,16 @@ function handleMouseDown(event: MouseEvent) {
       clickCounts.value.right++
       break
   }
+}
+
+function clearCounts() {
+  clickCounts.value = {
+    left: 0,
+    right: 0,
+    middle: 0,
+  }
+  currentButton.value = ''
+  showMessage('success', '已清空点击次数')
 }
 </script>
 
