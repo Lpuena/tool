@@ -14,12 +14,6 @@ export default defineNuxtConfig({
   ],
   app: {
     baseURL: '/tool/',
-    buildAssetsDir: '/_nuxt/',
-  },
-  runtimeConfig: {
-    public: {
-      baseURL: '/tool/'
-    }
   },
   nitro: {
     prerender: {
