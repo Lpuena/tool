@@ -14,11 +14,10 @@ export default defineNuxtConfig({
   ],
   app: {
     baseURL: '/tool/',
-  },
-  nitro: {
-    prerender: {
-      crawlLinks: false, // 禁用路由抓取
-      routes: [], // 明确指定需要预渲染的路由
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ],
     },
   },
 
