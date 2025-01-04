@@ -12,6 +12,9 @@ export default defineNuxtConfig({
   css: [
     '@unocss/reset/tailwind.css',
   ],
+  app: {
+    baseURL: '/tool/',
+  },
 
   devtools: { enabled: true },
   compatibilityDate: '2025-01-03',
