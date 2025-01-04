@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const router = useRouter()
 // 工具数据
-const tools = [
+const codeTools = [
   {
     name: 'VsCode 代码转换',
     description: '将代码转换为VSCode代码片段',
@@ -14,11 +14,14 @@ const tools = [
     icon: 'i-carbon-tool-kit',
     link: '/jsonToTsView',
   },
+]
+
+const peripheralTools = [
   {
-    name: '工具3',
-    description: '更多工具功能',
-    icon: 'i-carbon-tools',
-    link: '#',
+    name: '鼠标按键检测',
+    description: '实时检测鼠标按键点击',
+    icon: 'i-carbon-touch-interaction',
+    link: '/mouseClickView',
   },
 ]
 </script>
@@ -40,24 +43,47 @@ const tools = [
       </button> -->
     </div>
 
-    <!-- 工具展示 -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 h-full">
-      <div
-        v-for="tool in tools" :key="tool.name"
-        class="cursor-pointer bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-        @click="router.push(tool.link)"
-      >
-        <div class="text-6xl mb-8 text-blue-500" :class="tool.icon" />
-        <h3 class="text-2xl font-bold text-gray-900 mb-4">
-          {{ tool.name }}
-        </h3>
-        <p class="text-gray-600 mb-6">
-          {{ tool.description }}
-        </p>
-        <!-- <a :href="tool.link" class="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors">
-          了解更多
-          <span class="i-carbon-arrow-right ml-2" />
-        </a> -->
+    <!-- 代码工具展示 -->
+    <div class="mb-20">
+      <h3 class="text-3xl font-bold text-gray-900 mb-8">
+        代码工具
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 h-full">
+        <div
+          v-for="tool in codeTools" :key="tool.name"
+          class="cursor-pointer bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+          @click="router.push(tool.link)"
+        >
+          <div class="text-6xl mb-8 text-blue-500" :class="tool.icon" />
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">
+            {{ tool.name }}
+          </h3>
+          <p class="text-gray-600 mb-6">
+            {{ tool.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 外设工具展示 -->
+    <div>
+      <h3 class="text-3xl font-bold text-gray-900 mb-8">
+        外设工具
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 h-full">
+        <div
+          v-for="tool in peripheralTools" :key="tool.name"
+          class="cursor-pointer bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+          @click="router.push(tool.link)"
+        >
+          <div class="text-6xl mb-8 text-blue-500" :class="tool.icon" />
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">
+            {{ tool.name }}
+          </h3>
+          <p class="text-gray-600 mb-6">
+            {{ tool.description }}
+          </p>
+        </div>
       </div>
     </div>
   </div>

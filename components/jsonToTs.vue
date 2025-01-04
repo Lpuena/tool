@@ -11,11 +11,11 @@ const highlightedCode = ref('')
 
 const { showMessage } = useMessage()
 
-// 初始化
-highlightedCode.value = await codeToHtml('/* 请粘贴 JSON 数据 */', {
-  lang: 'typescript',
-  theme: 'vitesse-light',
-})
+// // 初始化
+// highlightedCode.value = await codeToHtml('/* 请粘贴 JSON 数据 */', {
+//   lang: 'typescript',
+//   theme: 'vitesse-light',
+// })
 
 async function convertToTs() {
   try {
