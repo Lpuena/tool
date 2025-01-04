@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const router = useRouter()
 // 工具数据
 const tools = [
   {
@@ -8,10 +9,10 @@ const tools = [
     link: '/pageChangeView',
   },
   {
-    name: '工具2',
-    description: '另一个有用的工具',
+    name: 'JSON 转 TypeScript',
+    description: '将 JSON 数据转换为 TypeScript 类型',
     icon: 'i-carbon-tool-kit',
-    link: '#',
+    link: '/jsonToTsView',
   },
   {
     name: '工具3',
@@ -43,7 +44,8 @@ const tools = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 h-full">
       <div
         v-for="tool in tools" :key="tool.name"
-        class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+        class="cursor-pointer bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+        @click="router.push(tool.link)"
       >
         <div class="text-6xl mb-8 text-blue-500" :class="tool.icon" />
         <h3 class="text-2xl font-bold text-gray-900 mb-4">
@@ -52,10 +54,10 @@ const tools = [
         <p class="text-gray-600 mb-6">
           {{ tool.description }}
         </p>
-        <a :href="tool.link" class="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors">
+        <!-- <a :href="tool.link" class="inline-flex items-center text-blue-500 hover:text-blue-600 transition-colors">
           了解更多
           <span class="i-carbon-arrow-right ml-2" />
-        </a>
+        </a> -->
       </div>
     </div>
   </div>
