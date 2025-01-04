@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-const router = useRouter()
 // 工具数据
 const codeTools = [
   {
@@ -20,8 +19,14 @@ const peripheralTools = [
   {
     name: '鼠标按键检测',
     description: '实时检测鼠标按键点击',
-    icon: 'i-carbon-touch-interaction',
+    icon: 'i-ph-mouse',
     link: '/mouseClickView',
+  },
+  {
+    name: '键盘按键检测',
+    description: '实时检测键盘按键输入',
+    icon: 'i-ph-keyboard',
+    link: '/keyboardView',
   },
 ]
 </script>
@@ -43,49 +48,15 @@ const peripheralTools = [
       </button> -->
     </div>
 
-    <!-- 代码工具展示 -->
-    <div class="mb-20">
-      <h3 class="text-3xl font-bold text-gray-900 mb-8">
-        代码工具
-      </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 h-full">
-        <div
-          v-for="tool in codeTools" :key="tool.name"
-          class="cursor-pointer bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-          @click="router.push(tool.link)"
-        >
-          <div class="text-6xl mb-8 text-blue-500" :class="tool.icon" />
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">
-            {{ tool.name }}
-          </h3>
-          <p class="text-gray-600 mb-6">
-            {{ tool.description }}
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- 外设工具展示 -->
-    <div>
-      <h3 class="text-3xl font-bold text-gray-900 mb-8">
-        外设工具
-      </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 h-full">
-        <div
-          v-for="tool in peripheralTools" :key="tool.name"
-          class="cursor-pointer bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-          @click="router.push(tool.link)"
-        >
-          <div class="text-6xl mb-8 text-blue-500" :class="tool.icon" />
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">
-            {{ tool.name }}
-          </h3>
-          <p class="text-gray-600 mb-6">
-            {{ tool.description }}
-          </p>
-        </div>
-      </div>
-    </div>
+    <!-- 工具展示 -->
+    <ToolSection
+      title="代码工具"
+      :tools="codeTools"
+    />
+    <ToolSection
+      title="外设工具"
+      :tools="peripheralTools"
+    />
   </div>
 </template>
 
