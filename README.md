@@ -1,75 +1,56 @@
-# Nuxt Minimal Starter
+# 工具网站
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+这是一个基于Nuxt 3构建的工具类网站，提供多种实用工具。
 
-## Setup
+## 功能列表
 
-Make sure to install dependencies:
+- JSON转TypeScript
+- 键盘按键检测
+- 鼠标点击检测
+
+## 项目结构
+
+```
+├── components/        # 可复用组件
+├── composables/       # 组合式API
+├── layouts/           # 布局组件
+├── pages/             # 页面组件
+├── public/            # 静态资源
+└── server/            # 服务端相关
+```
+
+## 开发环境
+
+### 安装依赖
 
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+### 启动开发服务器
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
-
-Build the application for production:
+### 生产环境构建
 
 ```bash
-# npm
-npm run build
-
-# pnpm
 pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+### 预览生产环境
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 贡献指南
+
+欢迎提交PR或issue来改进项目。
+
+1. Fork项目
+2. 创建新分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 打开Pull Request
