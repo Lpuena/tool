@@ -7,16 +7,6 @@ const snippetJson = ref('')
 // 复制内容
 const snippetCopy = ref('')
 
-const copied = ref(false)
-const { showMessage } = useMessage()
-
-// 重置复制状态
-function resetCopied() {
-  setTimeout(() => {
-    copied.value = false
-  }, 1500)
-}
-
 async function convertToSnippet() {
   const lines = inputCode.value.split('\n')
   const snippet = {
@@ -27,18 +17,6 @@ async function convertToSnippet() {
     theme: 'vitesse-light',
     lang: 'json',
   })
-}
-
-async function copyJson() {
-  try {
-    await navigator.clipboard.writeText(snippetCopy.value)
-    copied.value = true
-    resetCopied()
-    showMessage('success', 'JSON 已复制到剪贴板')
-  }
-  catch {
-    showMessage('error', '复制失败，请手动复制')
-  }
 }
 </script>
 
@@ -59,13 +37,7 @@ async function copyJson() {
     </div>
     <div class="relative">
       <pre class="p-4 h-[72vh] overflow-auto" v-html="snippetJson" />
-      <button
-        v-if="snippetJson"
-        class="absolute top-2 right-2 p-2 w-9 h-9 bg-white/80 hover:bg-white rounded-lg shadow hover:shadow-md transition-all"
-        @click="copyJson"
-      >
-        <CopiedCom :copied="copied" />
-      </button>
+      <CopiedBtn :if-show="snippetJson" :copy-value="snippetCopy" />
     </div>
   </div>
 </template>

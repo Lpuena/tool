@@ -13,6 +13,18 @@ const codeTools = [
     icon: 'i-carbon-tool-kit',
     link: '/jsonToTsView',
   },
+  {
+    name: '图片转 base64',
+    description: '将图片转换为 base64 编码',
+    icon: 'i-carbon-image',
+    link: '/imageToBase64View',
+  },
+  {
+    name: '图片压缩',
+    description: '压缩图片并优化文件大小',
+    icon: 'i-carbon-image-copy',
+    link: '/imageCompressView',
+  },
 ]
 
 const peripheralTools = [
