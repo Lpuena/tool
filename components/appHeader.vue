@@ -6,7 +6,7 @@ function goHome() {
 </script>
 
 <template>
-  <header class="bg-white/90 backdrop-blur-sm border-b border-gray-200/50 shadow-lg">
+  <header class="border-b border-gray-200/50 backdrop-blur-[4px] bg-grid">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex h-17 items-center justify-between">
         <div class="flex items-center space-x-3 cursor-pointer" @click="goHome()">
@@ -37,4 +37,14 @@ function goHome() {
   </header>
 </template>
 
-<style scoped></style>
+<style scoped>
+.bg-grid {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.3) 0,
+    rgba(255, 255, 255, 0.3) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+</style>
