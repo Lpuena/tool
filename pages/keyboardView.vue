@@ -1,4 +1,14 @@
 <script lang="ts" setup>
+// 键盘类型
+const keyboardType = ref<'mac' | 'win'>('win')
+
+const { winKeyboardLayout, macKeyboardLayout } = useKeyboards()
+
+// 当前键盘布局
+const keyboardLayout = computed(() => {
+  return keyboardType.value === 'win' ? winKeyboardLayout : macKeyboardLayout
+})
+
 const pressedKeys = ref<string[]>([])
 const recordedKeys = ref<string[]>([])
 const isRecording = ref(false)
@@ -27,7 +37,11 @@ function handleKeyDown(event: KeyboardEvent) {
     return
   }
 
-  const key = event.key === ' ' ? 'Space' : event.key
+  let key = event.key === ' ' ? 'Space' : event.key
+  // 统一处理字母键为大写
+  if (/^[a-z]$/i.test(key)) {
+    key = key.toUpperCase()
+  }
   // 只添加当前按下的键
   if (!pressedKeys.value.includes(key)) {
     pressedKeys.value.push(key)
@@ -42,11 +56,23 @@ function handleKeyDown(event: KeyboardEvent) {
 function handleKeyUp(event: KeyboardEvent) {
   event.preventDefault()
 
-  // 跳过 CapsLock 键的处理
-  if (event.key === 'CapsLock')
+  // 处理 CapsLock 键
+  if (event.key === 'CapsLock') {
+    const index = pressedKeys.value.indexOf('CapsLock')
+    if (index === -1) {
+      pressedKeys.value.push('CapsLock')
+    }
+    else {
+      pressedKeys.value.splice(index, 1)
+    }
     return
+  }
 
-  const key = event.key === ' ' ? 'Space' : event.key
+  let key = event.key === ' ' ? 'Space' : event.key
+  // 统一处理字母键为大写
+  if (/^[a-z]$/i.test(key)) {
+    key = key.toUpperCase()
+  }
   // 移除当前松开的键
   pressedKeys.value = pressedKeys.value.filter(k => k !== key)
 }
@@ -54,6 +80,7 @@ function handleKeyUp(event: KeyboardEvent) {
 // 添加事件监听器
 onMounted(() => {
   window.addEventListener('keydown', handleKeyDown)
+
   window.addEventListener('keyup', handleKeyUp)
 })
 
@@ -62,96 +89,112 @@ onUnmounted(() => {
   window.removeEventListener('keydown', handleKeyDown)
   window.removeEventListener('keyup', handleKeyUp)
 })
-
-function toggleRecording() {
-  isRecording.value = !isRecording.value
-  if (!isRecording.value) {
-    // 停止记录时清空当前按键
-    pressedKeys.value = []
-  }
-}
-
-function clearRecordedKeys() {
-  recordedKeys.value = []
-}
 </script>
 
 <template>
   <div class="container">
-    <!-- 标题和操作按钮 -->
-    <div class="flex justify-between items-center mb-14">
-      <h2 class="text-3xl font-bold">
-        键盘按键检测
-      </h2>
-      <div class="flex gap-2">
-        <button
-          class="px-4 py-2 rounded-lg transition-colors"
+    <!-- 标题 -->
+    <h2 class="text-3xl font-bold text-center mb-8">
+      键盘按键检测
+    </h2>
+
+    <!-- 切换按钮 -->
+    <div class="flex justify-end mb-4">
+      <div class="relative w-24 h-12 bg-white rounded-full shadow-lg p-1">
+        <div
+          class="absolute top-1 left-1 w-10 h-10 bg-gray-100 rounded-full transition-all duration-300"
           :class="{
-            'bg-blue-500 text-white hover:bg-blue-600': !isRecording,
-            'bg-red-500 text-white hover:bg-red-600': isRecording,
+            'translate-x-0': keyboardType === 'win',
+            'translate-x-12': keyboardType === 'mac',
           }"
-          @click="toggleRecording"
+        />
+        <div
+          class="absolute top-1 left-1 w-10 h-10 flex items-center justify-center cursor-pointer"
+          @click="keyboardType = 'win'"
         >
-          {{ isRecording ? '停止记录' : '开始记录' }}
-        </button>
-        <button
-          v-if="recordedKeys.length > 0"
-          class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors"
-          @click="clearRecordedKeys"
+          <div class="i-qlementine-icons-windows-16 text-xl text-gray-600" />
+        </div>
+        <div
+          class="absolute top-1 right-1 w-10 h-10 flex items-center justify-center cursor-pointer"
+          @click="keyboardType = 'mac'"
         >
-          清除记录
-        </button>
-      </div>
-    </div>
-
-    <!-- 当前按键显示 -->
-    <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
-      <p class="text-2xl text-gray-700 text-center">
-        当前按下：
-        <span
-          v-if="pressedKeys.length > 0"
-          class="font-bold text-blue-500"
-        >
-          {{ pressedKeys.join(' + ') }}
-        </span>
-        <span v-else class="text-gray-400">无</span>
-      </p>
-    </div>
-
-    <!-- 记录模式下的按键显示 -->
-    <div
-      v-if="recordedKeys.length > 0"
-      class="bg-white rounded-xl shadow-lg p-8 mb-8 max-h-[60vh] overflow-y-auto recorded-keys-container"
-    >
-      <p class="text-2xl text-gray-700 text-center mb-4">
-        已记录按键：
-      </p>
-      <div class="">
-        <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          <div
-            v-for="(key, index) in recordedKeys"
-            :key="index"
-            class="bg-gray-50 rounded-xl shadow-sm p-4"
-          >
-            <div class="text-2xl font-bold text-gray-700 mb-1 text-center">
-              {{ key }}
-            </div>
-            <div class="text-gray-500 text-sm text-center">
-              按键 #{{ index + 1 }}
-            </div>
-          </div>
+          <div class="i-qlementine-icons-mac-16 text-xl text-gray-600" />
         </div>
       </div>
     </div>
 
-    <!-- 提示信息 -->
-    <div
-      v-if="!isRecording && recordedKeys.length === 0"
-      class="text-center text-gray-500 py-12"
-    >
-      <p class="text-lg">
-        请按下任意键盘按键
-      </p>
+    <!-- 键盘布局显示 -->
+    <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+      <div class="keyboard-grid">
+        <div
+          v-for="(row, rowIndex) in keyboardLayout"
+          :key="rowIndex"
+          class="keyboard-row"
+        >
+          <div
+            v-for="(key, keyIndex) in row"
+            :key="keyIndex"
+            class="keyboard-key"
+            :class="{
+              'keyboard-key--pressed': pressedKeys.includes(typeof key === 'string' ? key : key.key),
+              'keyboard-key--special': typeof key !== 'string',
+            }"
+            :style="{ width: typeof key === 'object' ? `${key.width}px` : '' }"
+          >
+            {{ typeof key === 'string' ? key : key.key }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.keyboard-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 1000px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.keyboard-row {
+display: flex;
+gap: 8px;
+}
+
+.keyboard-key {
+display: flex;
+align-items: center;
+justify-content: center;
+min-width: 60px;
+height: 60px;
+padding: 0 16px;
+background-color: #f3f4f6;
+border-radius: 12px;
+font-size: 16px;
+font-weight: 500;
+color: #374151;
+transition: all 0.2s ease;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+user-select: none;
+}
+
+.keyboard-key:hover {
+background-color: #e5e7eb;
+}
+
+.keyboard-key--pressed {
+background-color: #3b82f6;
+color: white;
+transform: scale(0.95);
+box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
+}
+
+.keyboard-key--special {
+background-color: #e5e7eb;
+font-size: 15px;
+}
+</style>
