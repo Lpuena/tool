@@ -9,7 +9,7 @@ export function useKeyboards() {
   const KEY_WIDTHS = {
     SHIFT: 150,
     CAPSLOCK: 120,
-    SPACE: 400,
+    SPACE: 500,
     BACKSPACE: 120,
     ENTER: 120,
     DELETE: 120,
