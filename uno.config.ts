@@ -27,6 +27,9 @@ export default defineConfig({
       dbg: 'bg-[#222]',
       dbr: 'border-gray-700/50',
     },
+    {
+      fr: 'focus:ring-2 focus:ring-blue-500',
+    },
   ],
   rules: [
 

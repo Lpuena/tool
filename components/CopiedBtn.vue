@@ -20,7 +20,7 @@ async function copy() {
     await navigator.clipboard.writeText(props.copyValue)
     copied.value = true
     resetCopied()
-    showMessage('success', 'JSON 已复制到剪贴板')
+    showMessage('success', '已复制到剪贴板')
   }
   catch {
     showMessage('error', '复制失败，请手动复制')

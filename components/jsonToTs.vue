@@ -2,7 +2,9 @@
 import JsonToTS from 'json-to-ts'
 import { codeToHtml } from 'shiki'
 
-const copied = ref(false)
+// 获取当前主题
+const colorMode = useColorMode()
+
 const inputJson = ref('')
 const rootInterfaceName = ref('')
 // 用于复制的内容
@@ -11,12 +13,6 @@ const highlightedCode = ref('')
 
 const { showMessage } = useMessage()
 
-// // 初始化
-// highlightedCode.value = await codeToHtml('/* 请粘贴 JSON 数据 */', {
-//   lang: 'typescript',
-//   theme: 'vitesse-light',
-// })
-
 async function convertToTs() {
   try {
     const jsonObj = JSON.parse(inputJson.value)
@@ -24,9 +20,13 @@ async function convertToTs() {
       rootName: rootInterfaceName.value || 'RootInterface',
     }).join('\n\n')
     tsInterface.value = code
+
+    // 根据当前主题选择 Shiki 主题
+    const theme = colorMode.value === 'dark' ? 'vitesse-dark' : 'vitesse-light'
+
     highlightedCode.value = await codeToHtml(code, {
       lang: 'typescript',
-      theme: 'vitesse-light',
+      theme,
     })
   }
   catch (error) {
@@ -39,56 +39,48 @@ async function convertToTs() {
     }
   }
 }
-// 重置复制状态
-function resetCopied() {
-  setTimeout(() => {
-    copied.value = false
-  }, 2000)
-}
-async function copyTsInterface() {
-  try {
-    await navigator.clipboard.writeText(tsInterface.value)
-    copied.value = true
-    resetCopied()
-    showMessage('success', 'Ts Interface 已复制到剪贴板')
+// 监听主题变化
+watch(colorMode, () => {
+  if (inputJson.value) {
+    convertToTs()
   }
-  catch {
-    showMessage('error', '复制失败，请手动复制')
-  }
-}
+})
 </script>
 
 <template>
   <div class="grid grid-cols-2 gap-5">
     <div>
       <textarea
-        v-model="inputJson" class="w-full h-164 p-4 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200  placeholder-gray-400 text-gray-700"
+        v-model="inputJson"
+        class="fr h-164 w-full border-2 border-gray-200 rounded-lg p-4 placeholder-gray-400"
+        dark="dbg dbr focus:ring-gray-200"
         placeholder="在此输入 JSON 数据..."
       />
       <input
         v-model="rootInterfaceName"
-        class="mt-4 gap-4 w-full p-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
+        class="fr mt-4 w-full gap-4 border-2 border-gray-200 rounded-lg p-2"
+        dark="dbg dbr focus:ring-gray-200"
         placeholder="接口名称"
       >
       <button
-        class="btn mt-4 gap-4"
+        class="mt-4 gap-4 btn"
         @click="convertToTs"
       >
         转换
       </button>
     </div>
-    <div class="overflow-y-auto relative ">
+    <div class="relative overflow-y-auto">
       <pre class="h-[72vh] p-4" v-html="highlightedCode" />
-      <button
-        v-if="highlightedCode"
-        class="absolute top-2 right-2 p-2 w-9 h-9 bg-white/80 hover:bg-white rounded-lg shadow hover:shadow-md transition-all"
-        @click="copyTsInterface"
-      >
-        <CopiedCom :copied="copied" />
-      </button>
+      <CopiedBtn :if-show="highlightedCode" :copy-value="tsInterface" />
     </div>
   </div>
 </template>
 
 <style scoped>
+textarea:focus {
+  outline: none; /* 移除默认的蓝色 outline */
+}
+input:focus {
+  outline: none; /* 移除默认的蓝色 outline */
+}
 </style>

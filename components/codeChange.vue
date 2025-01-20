@@ -45,7 +45,7 @@ watch(colorMode, () => {
     <div>
       <textarea
         v-model="inputCode"
-        class="h-164 w-full border rounded-lg p-4 focus:ring-2 focus:ring-blue-500"
+        class="fr h-164 w-full border rounded-lg p-4"
         dark="dbg dbr focus:ring-gray-200"
         placeholder="在此输入需要转换的代码..."
       />
