@@ -12,10 +12,10 @@ defineProps<{
 
 <template>
   <div class="mb-20">
-    <h3 class="text-3xl font-bold text-gray-900 mb-8">
+    <h3 class="mb-8 text-3xl font-bold">
       {{ title }}
     </h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 h-full">
+    <div class="grid grid-cols-1 h-full gap-10 lg:grid-cols-3 sm:grid-cols-2">
       <ToolCard
         v-for="tool in tools"
         :key="tool.name"

@@ -3,8 +3,11 @@
 </script>
 
 <template>
-  <footer class="bg-white border-t border-gray-200">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-gray-500">
+  <footer
+    class="border-t"
+    dark="border-gray-700/50"
+  >
+    <div class="mx-auto px-4 py-6 text-center text-gray-500 container lg:px-8 sm:px-6">
       © 2024 工具网站. All rights reserved.
     </div>
   </footer>

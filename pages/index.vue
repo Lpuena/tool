@@ -46,11 +46,11 @@ const peripheralTools = [
 <template>
   <div>
     <!-- 欢迎区域 -->
-    <div class="max-w-3xl mx-auto text-center mb-20">
-      <h2 class="text-5xl font-bold text-gray-900 mb-8">
+    <div class="mx-auto mb-20 max-w-3xl text-center">
+      <h2 class="mb-8 text-5xl font-bold">
         欢迎使用工具网站
       </h2>
-      <p class="text-xl text-gray-600 mb-12">
+      <p class="mb-12 text-xl text-gray-600 dark:text-gray-400">
         这是一个使用 Nuxt 和 UnoCSS 构建的现代化工具网站。
       </p>
       <!-- <button
