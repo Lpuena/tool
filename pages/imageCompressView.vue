@@ -92,7 +92,7 @@ async function compressImage() {
         <div
           v-else-if="compressedImage"
           class="h-[55vh] rounded-xl bg-white p-8 shadow-lg"
-          dark="bg-[#222] shadow-gray-700/50"
+          dark="dbg shadow-gray-700/50"
         >
           <div class="flex justify-between">
             <div class="space-y-4">

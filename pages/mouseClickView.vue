@@ -2,11 +2,17 @@
 const { showMessage } = useMessage()
 
 // 定义鼠标点击次数
-const clickCounts = ref({
-  left: 0,
-  right: 0,
-  middle: 0,
-})
+const clickCounts = ref([
+  { id: 'left', label: '左键', count: 0, color: 'text-blue-500' },
+  { id: 'middle', label: '中键', count: 0, color: 'text-purple-600' },
+  { id: 'right', label: '右键', count: 0, color: 'text-pink-600' },
+])
+
+const buttonMap = {
+  0: 'left',
+  1: 'middle',
+  2: 'right',
+} as const // 使用 as const 确保类型推断为字面量类型
 
 // 当前点击的按键
 const currentButton = ref('')
@@ -24,28 +30,20 @@ function handleMouseDown(event: MouseEvent) {
 
   lastClickTime.value = now
 
-  switch (event.button) {
-    case 0:
-      currentButton.value = '左键'
-      clickCounts.value.left++
-      break
-    case 1:
-      currentButton.value = '中键'
-      clickCounts.value.middle++
-      break
-    case 2:
-      currentButton.value = '右键'
-      clickCounts.value.right++
-      break
+  const button = buttonMap[event.button as keyof typeof buttonMap]
+  if (button) {
+    const buttonData = clickCounts.value.find(item => item.id === button)
+    if (buttonData) {
+      buttonData.count++
+      currentButton.value = buttonData.label
+    }
   }
 }
 
 function clearCounts() {
-  clickCounts.value = {
-    left: 0,
-    right: 0,
-    middle: 0,
-  }
+  clickCounts.value.forEach((item) => {
+    item.count = 0
+  })
   currentButton.value = ''
   showMessage('success', '已清空点击次数')
 }
@@ -54,7 +52,7 @@ function clearCounts() {
 <template>
   <div>
     <div class="flex flex-col items-center justify-center">
-      <h2 class="text-3xl font-bold mb-14">
+      <h2 class="mb-14 text-3xl font-bold">
         鼠标按键检测
       </h2>
     </div>
@@ -63,58 +61,53 @@ function clearCounts() {
       <!-- 左侧区域 -->
       <div>
         <!-- 当前点击显示 -->
-        <div class="p-6 rounded-lg bg-white border border-gray-200 mb-4">
+        <div
+          class="mb-4 border border-gray-200 rounded-lg bg-white p-6"
+          dark="dbg dbr"
+        >
           <p class="text-xl text-gray-600">
-            当前点击：<span class="font-bold text-blue-600">{{ currentButton || '无' }}</span>
+            当前点击：<span class="textCol">{{ currentButton || '无' }}</span>
           </p>
         </div>
 
         <!-- 点击统计 -->
         <div class="grid grid-cols-1 gap-4">
-          <div class="bg-white border border-gray-200 p-6 rounded-xl">
-            <div class="text-3xl font-bold text-blue-600 mb-2">
-              {{ clickCounts.left }}
+          <div
+            v-for="button in clickCounts"
+            :key="button.id"
+            class="border border-gray-200 rounded-xl bg-white p-6"
+            dark="dbg dbr"
+          >
+            <div class="mb-2 text-3xl font-bold" :class="[button.color]">
+              {{ button.count }}
             </div>
             <div class="text-gray-600">
-              左键点击次数
-            </div>
-          </div>
-          <div class="bg-white border border-gray-200 p-6 rounded-xl">
-            <div class="text-3xl font-bold text-purple-600 mb-2">
-              {{ clickCounts.middle }}
-            </div>
-            <div class="text-gray-600">
-              中键点击次数
-            </div>
-          </div>
-          <div class="bg-white border border-gray-200 p-6 rounded-xl">
-            <div class="text-3xl font-bold text-pink-600 mb-2">
-              {{ clickCounts.right }}
-            </div>
-            <div class="text-gray-600">
-              右键点击次数
+              {{ button.label }}点击次数
             </div>
           </div>
         </div>
         <!-- 添加清空按钮 -->
-        <button class="btn mt-4" @click="clearCounts">
+        <button class="mt-4 btn" @click="clearCounts">
           清空
         </button>
       </div>
 
       <!-- 右侧区域 -->
-      <div class="overflow-y-auto relative">
+      <div class="relative overflow-y-auto">
         <!-- 点击区域 -->
         <div
-          class="h-[72vh] p-8 rounded-lg bg-white border border-gray-200 text-center cursor-pointer select-none
-                 transition-all duration-200 hover:shadow-lg"
+          class="h-[72vh] cursor-pointer select-none border border-gray-200 rounded-lg bg-white p-8 text-center transition-all duration-200 hover:shadow-lg"
+          dark="dbg dbr"
           @mousedown="handleMouseDown"
           @contextmenu.prevent
         >
-          <p class="text-gray-600 text-lg font-medium">
+          <p
+            class="text-lg text-gray-600 font-medium"
+            dark="text-gray-200"
+          >
             请在此区域点击鼠标
           </p>
-          <p class="text-sm text-gray-400 mt-2">
+          <p class="mt-2 text-sm text-gray-400">
             （左键/中键/右键均可）
           </p>
         </div>
