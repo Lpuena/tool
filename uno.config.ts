@@ -17,13 +17,20 @@ export default defineConfig({
     {
       'a-btn': 'relative text-gray-600 hover:text-gray-900 transition-colors after:block after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600  hover:after:w-full after:transition-all',
     },
+    {
+      bgtf: 'from-[#CFFFBD] to-[#B9DFFF]',
+    },
+    {
+      'dark-btn': 'dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-100',
+    },
+    {
+      dbg: 'dark:bg-[#09090b]',
+    },
   ],
   rules: [
+
   ],
   theme: {
-    colors: {
-      // ...
-    },
   },
   presets: [
     presetUno(),

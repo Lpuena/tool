@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   modules: [
     // '@nuxt/eslint',
     '@unocss/nuxt',
+    '@nuxtjs/color-mode',
   ],
   // eslint: {
   //   config: {
@@ -12,6 +13,11 @@ export default defineNuxtConfig({
   css: [
     '@unocss/reset/tailwind.css',
   ],
+  colorMode: {
+    classSuffix: '',
+    preference: 'system',
+    fallback: 'light',
+  },
   app: {
     baseURL: '/tool/',
     head: {
