@@ -33,9 +33,15 @@ export default defineConfig({
     {
       textCol: 'text-blue-600 font-bold dark:text-blue-400',
     },
+    {
+      headerImgLight: 'bg-[radial-gradient(transparent_1px,_rgba(255,_255,_255,_0.8)_1px)]',
+      headerImgDark: 'bg-[radial-gradient(transparent_1px,_rgba(34,_34,_34,_0.8)_1px)]',
+    },
   ],
   rules: [
-
+    // 解析 background-size-[...]
+    [/^background-size-(.+)$/, ([_, value]) => ({ 'background-size': value })],
+    ['bg-custom-size', { 'background-size': '4px 4px' }],
   ],
   theme: {
   },
