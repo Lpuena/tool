@@ -32,7 +32,8 @@ async function copy() {
   <div>
     <button
       v-if="ifShow"
-      class="absolute top-2 right-2 p-2 w-9 h-9 bg-white/80 hover:bg-white rounded-lg shadow hover:shadow-md transition-all"
+      class="absolute right-2 top-2 h-9 w-9 rounded-lg bg-white/80 p-2 shadow transition-all hover:bg-white hover:shadow-md"
+      dark="dbg hover:bg-black"
       @click="copy"
     >
       <CopiedCom :copied="copied" />

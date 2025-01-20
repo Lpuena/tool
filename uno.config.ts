@@ -24,7 +24,8 @@ export default defineConfig({
       'dark-btn': 'dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-100',
     },
     {
-      dbg: 'dark:bg-[#09090b]',
+      dbg: 'bg-[#222]',
+      dbr: 'border-gray-700/50',
     },
   ],
   rules: [

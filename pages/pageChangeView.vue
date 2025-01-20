@@ -5,7 +5,7 @@
 <template>
   <div>
     <div class="flex flex-col items-center justify-center">
-      <h2 class="text-3xl font-bold mb-14">
+      <h2 class="mb-14 text-3xl font-bold">
         VsCode Change
       </h2>
     </div>

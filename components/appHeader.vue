@@ -39,7 +39,7 @@ const isDark = computed(() => colorMode.value === 'dark')
 }
 
 .headerDark {
-  background-image: radial-gradient(transparent 1px, rgba(17, 24, 39, 0.8) 1px);
+  background-image: radial-gradient(transparent 1px, rgba(34, 34, 34, 0.8) 1px);
   background-size: 4px 4px;
 }
 </style>
