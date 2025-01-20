@@ -13,7 +13,7 @@ function handleUpload(base64: string, name: string, size: string) {
 <template>
   <div class="h-[80vh]">
     <div class="flex flex-col items-center justify-center">
-      <h2 class="text-3xl font-bold mb-14">
+      <h2 class="mb-14 text-3xl font-bold">
         图片转 Base64
       </h2>
     </div>
@@ -23,17 +23,21 @@ function handleUpload(base64: string, name: string, size: string) {
 
       <!-- 结果区域 -->
       <div v-if="base64String" class="mt-8">
-        <div class="bg-white rounded-xl shadow-lg p-8">
-          <p class="text-xl text-gray-600 mb-4">
-            文件名：<span class="font-bold text-blue-600">{{ fileName }}</span>
+        <div
+          class="rounded-xl bg-white p-8 shadow-lg"
+          dark="bg-[#222] shadow-gray-700/50"
+        >
+          <p class="mb-4 text-xl text-gray-600">
+            文件名：<span class="text-blue-600 font-bold">{{ fileName }}</span>
           </p>
-          <p class="text-xl text-gray-600 mb-6">
-            文件大小：<span class="font-bold text-blue-600">{{ fileSize }}</span>
+          <p class="mb-6 text-xl text-gray-600">
+            文件大小：<span class="text-blue-600 font-bold">{{ fileSize }}</span>
           </p>
           <div relative>
             <textarea
               v-model="base64String"
-              class=" w-full h-150 p-4 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="fr h-150 w-full resize-none border border-gray-200 rounded-lg p-4"
+              dark="dbg dbr focus:ring-gray-200"
               readonly
             />
             <CopiedBtn :if-show="base64String" :copy-value="base64String" />
@@ -43,3 +47,9 @@ function handleUpload(base64: string, name: string, size: string) {
     </div>
   </div>
 </template>
+
+<style scoped>
+textarea:focus {
+  outline: none; /* 移除默认的蓝色 outline */
+}
+</style>

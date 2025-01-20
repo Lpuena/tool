@@ -73,7 +73,8 @@ function handleDragLeave(event: DragEvent) {
 
 <template>
   <div
-    class="p-8 rounded-lg transition-all duration-200 relative border-2 border-dashed"
+    class="relative border-2 rounded-lg border-dashed p-8 transition-all duration-200"
+    dark="border-gray-600"
     :class="{
       'border-blue-500': isDragging,
       'border-gray-200': !isDragging,
@@ -86,25 +87,27 @@ function handleDragLeave(event: DragEvent) {
     <!-- 拖拽时的遮罩层 -->
     <div
       v-if="isDragging"
-      class="absolute inset-0 bg-blue-500/20 rounded-lg flex items-center justify-center"
+      class="absolute inset-0 flex items-center justify-center rounded-lg bg-blue-500/20"
     >
-      <div class="text-blue-500 text-2xl font-medium flex flex-col items-center">
-        <div class="i-carbon-upload text-4xl mb-2" />
+      <div class="flex flex-col items-center text-2xl text-blue-500 font-medium">
+        <div class="i-carbon-upload mb-2 text-4xl" />
         松开鼠标以上传图片
       </div>
     </div>
 
-    <div v-if="isLoading" class="flex items-center justify-center h-40">
-      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
+    <div v-if="isLoading" class="h-40 flex items-center justify-center">
+      <div class="h-12 w-12 animate-spin border-b-2 border-t-2 border-blue-500 rounded-full" />
     </div>
-    <div v-else class="flex flex-col items-center justify-center h-40">
-      <div class="i-carbon-image text-6xl text-gray-400 mb-4" />
-      <p class="text-gray-600 text-lg font-medium">
+    <div v-else class="h-40 flex flex-col items-center justify-center">
+      <div class="i-carbon-image mb-4 text-6xl text-gray-400" />
+      <p
+        class="text-lg text-gray-500 font-medium"
+      >
         拖拽图片到此区域或
       </p>
       <label
         for="file-upload"
-        class="mt-4 btn  cursor-pointer"
+        class="mt-4 cursor-pointer btn"
       >
         选择文件
       </label>

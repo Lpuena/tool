@@ -58,7 +58,7 @@ watch(colorMode, () => {
       />
       <input
         v-model="rootInterfaceName"
-        class="fr mt-4 w-full gap-4 border-2 border-gray-200 rounded-lg p-2"
+        class="fr mt-4 w-full gap-4 border-2 border-gray-200 rounded-lg p-2 focus:outline-none"
         dark="dbg dbr focus:ring-gray-200"
         placeholder="接口名称"
       >
