@@ -15,7 +15,7 @@ const isDark = computed(() => colorMode.value === 'dark')
     :class="{ headerLight: !isDark, headerDark: isDark }"
   >
     <div class="mx-auto px-4 container lg:px-8 sm:px-6">
-      <div class="h-17 flex items-center justify-between">
+      <div class="h-15 flex items-center justify-between">
         <!-- Logo and Title -->
         <div class="flex cursor-pointer items-center space-x-3" @click="goHome">
           <div alt="Logo" class="i-carbon-code h-14 w-14 from-blue-600 to-purple-600 bg-gradient-to-r" />
