@@ -30,6 +30,9 @@ export default defineConfig({
     {
       fr: 'transition-all duration-200 focus:ring-2 focus:ring-blue-500',
     },
+    {
+      textCol: 'text-blue-600 font-bold dark:text-blue-400',
+    },
   ],
   rules: [
 

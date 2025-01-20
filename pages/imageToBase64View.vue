@@ -28,10 +28,10 @@ function handleUpload(base64: string, name: string, size: string) {
           dark="bg-[#222] shadow-gray-700/50"
         >
           <p class="mb-4 text-xl text-gray-600">
-            文件名：<span class="text-blue-600 font-bold">{{ fileName }}</span>
+            文件名：<span class="textCol">{{ fileName }}</span>
           </p>
           <p class="mb-6 text-xl text-gray-600">
-            文件大小：<span class="text-blue-600 font-bold">{{ fileSize }}</span>
+            文件大小：<span class="textCol">{{ fileSize }}</span>
           </p>
           <div relative>
             <textarea

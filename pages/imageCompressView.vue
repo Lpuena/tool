@@ -73,12 +73,12 @@ async function compressImage() {
 <template>
   <div class="h-[80vh]">
     <div class="flex flex-col items-center justify-center">
-      <h2 class="text-3xl font-bold mb-14">
+      <h2 class="mb-14 text-3xl font-bold">
         图片压缩工具
       </h2>
     </div>
 
-    <div class="mx-auto ">
+    <div class="mx-auto">
       <!-- 上传区域 -->
       <div>
         <ImageUploader @upload="handleUpload" />
@@ -86,26 +86,30 @@ async function compressImage() {
 
       <!-- 预览区域 -->
       <div class="mt-8 h-10">
-        <div v-if="loading" class="text-center py-8">
+        <div v-if="loading" class="py-8 text-center">
           正在压缩图片...
         </div>
-        <div v-else-if="compressedImage" class="bg-white rounded-xl shadow-lg p-8 h-[55vh]">
+        <div
+          v-else-if="compressedImage"
+          class="h-[55vh] rounded-xl bg-white p-8 shadow-lg"
+          dark="bg-[#222] shadow-gray-700/50"
+        >
           <div class="flex justify-between">
             <div class="space-y-4">
               <p class="text-lg text-gray-600">
-                原文件：<span class="font-bold text-blue-600">{{ fileName }}</span>
+                原文件：<span class="textCol">{{ fileName }}</span>
               </p>
               <p class="text-lg text-gray-600">
-                原文件大小：<span class="font-bold text-blue-600">{{ fileSize }}</span>
+                原文件大小：<span class="textCol">{{ fileSize }}</span>
               </p>
               <p class="text-lg text-gray-600">
-                压缩后大小：<span class="font-bold text-blue-600">{{ compressedSize }}</span>
+                压缩后大小：<span class="textCol">{{ compressedSize }}</span>
               </p>
             </div>
             <a
               :href="compressedImage"
               download="compressed.jpg"
-              class="mt-4 btn h-12"
+              class="mt-4 h-12 btn"
             >
               下载压缩图片
             </a>
@@ -115,7 +119,7 @@ async function compressImage() {
             <img
               :src="compressedImage"
               alt="压缩后的图片"
-              class="max-h-[40vh] rounded-lg border border-gray-200"
+              class="max-h-[40vh] border border-gray-200 rounded-lg"
             >
           </div>
         </div>
