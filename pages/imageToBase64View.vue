@@ -11,7 +11,7 @@ function handleUpload(base64: string, name: string, size: string) {
 </script>
 
 <template>
-  <div class="h-[80vh]">
+  <div class="">
     <div class="flex flex-col items-center justify-center">
       <h2 class="mb-14 text-3xl font-bold">
         图片转 Base64
@@ -36,7 +36,7 @@ function handleUpload(base64: string, name: string, size: string) {
           <div relative>
             <textarea
               v-model="base64String"
-              class="fr h-150 w-full resize-none border border-gray-200 rounded-lg p-4"
+              class="h-140 w-full resize-none border border-gray-200 rounded-lg p-4 fr"
               dark="dbg dbr focus:ring-gray-200"
               readonly
             />

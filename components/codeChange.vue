@@ -45,7 +45,7 @@ watch(colorMode, () => {
     <div>
       <textarea
         v-model="inputCode"
-        class="fr h-164 w-full border rounded-lg p-4"
+        class="h-164 w-full border rounded-lg p-4 fr"
         dark="dbg dbr focus:ring-gray-200"
         placeholder="在此输入需要转换的代码..."
       />
@@ -57,7 +57,7 @@ watch(colorMode, () => {
     <!-- 输出区域 -->
     <div class="relative">
       <pre
-        class="h-[72vh] overflow-auto p-4"
+        class="h-200 overflow-auto p-4"
         v-html="snippetJson"
       />
       <CopiedBtn :if-show="snippetJson" :copy-value="snippetCopy" />

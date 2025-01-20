@@ -52,13 +52,13 @@ watch(colorMode, () => {
     <div>
       <textarea
         v-model="inputJson"
-        class="fr h-164 w-full border-2 border-gray-200 rounded-lg p-4 placeholder-gray-400"
+        class="h-164 w-full border-2 border-gray-200 rounded-lg p-4 fr placeholder-gray-400"
         dark="dbg dbr focus:ring-gray-200"
         placeholder="在此输入 JSON 数据..."
       />
       <input
         v-model="rootInterfaceName"
-        class="fr mt-4 w-full gap-4 border-2 border-gray-200 rounded-lg p-2 focus:outline-none"
+        class="mt-4 w-full gap-4 border-2 border-gray-200 rounded-lg p-2 focus:outline-none fr"
         dark="dbg dbr focus:ring-gray-200"
         placeholder="接口名称"
       >
@@ -70,7 +70,7 @@ watch(colorMode, () => {
       </button>
     </div>
     <div class="relative overflow-y-auto">
-      <pre class="h-[72vh] p-4" v-html="highlightedCode" />
+      <pre class="h-200 p-4" v-html="highlightedCode" />
       <CopiedBtn :if-show="highlightedCode" :copy-value="tsInterface" />
     </div>
   </div>

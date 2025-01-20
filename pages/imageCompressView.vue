@@ -71,7 +71,7 @@ async function compressImage() {
 </script>
 
 <template>
-  <div class="h-[80vh]">
+  <div>
     <div class="flex flex-col items-center justify-center">
       <h2 class="mb-14 text-3xl font-bold">
         图片压缩工具
@@ -85,13 +85,13 @@ async function compressImage() {
       </div>
 
       <!-- 预览区域 -->
-      <div class="mt-8 h-10">
+      <div class="mt-8">
         <div v-if="loading" class="py-8 text-center">
           正在压缩图片...
         </div>
         <div
           v-else-if="compressedImage"
-          class="h-[55vh] rounded-xl bg-white p-8 shadow-lg"
+          class="h-180 overflow-y-auto rounded-xl bg-white p-8 shadow-lg"
           dark="dbg shadow-gray-700/50"
         >
           <div class="flex justify-between">
