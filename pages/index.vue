@@ -35,6 +35,12 @@ const peripheralTools = [
     link: '/mouseClickView',
   },
   {
+    name: '鼠标滚轮检测',
+    description: '实时检测鼠标滚轮',
+    icon: 'i-ph-mouse-simple',
+    link: '/mouseWheelView',
+  },
+  {
     name: '键盘按键检测',
     description: '实时检测键盘按键输入',
     icon: 'i-ph-keyboard',

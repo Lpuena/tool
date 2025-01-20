@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import JsonToTs from '~/components/jsonToTs.vue'
 </script>
 
 <template>

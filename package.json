@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@nuxtjs/color-mode": "^3.5.2",
+    "dayjs": "^1.11.13",
     "json-to-ts": "^2.1.0",
+    "mathjs": "^14.0.1",
     "nuxt": "^3.15.0",
     "vue": "latest",
     "vue-router": "latest"
