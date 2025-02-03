@@ -7,7 +7,7 @@ function goHome() {
 
 <template>
   <header
-    class="headerImgLight bg-custom-size border-b border-gray-200/50 backdrop-blur-[4px] transition-colors duration-300"
+    class="border-b border-gray-200/50 headerImgLight backdrop-blur-[4px] transition-colors duration-300 bg-custom-size"
     dark="border-gray-700/50 headerImgDark"
   >
     <div class="mx-auto px-4 container lg:px-8 sm:px-6">
@@ -21,7 +21,7 @@ function goHome() {
         </div>
 
         <!-- Dark Mode Toggle -->
-        <DarkTroggle />
+        <DarkToggle />
       </div>
     </div>
   </header>
