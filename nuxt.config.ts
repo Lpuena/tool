@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     baseURL: '/tool/',
     head: {
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/tool/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/CarbonCode.png' },
       ],
     },
   },
