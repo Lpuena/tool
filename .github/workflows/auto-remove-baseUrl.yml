@@ -22,10 +22,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Sync main branch to no-base-url-branch
+      - name: Sync master branch to no-base-url-branch
         run: |
-          # 强制创建/更新 no-base-url-branch 为 main 的副本
-          git checkout main
+          # 强制创建/更新 no-base-url-branch 为 master 的副本
+          git checkout master
           git branch -D no-base-url-branch || true
           git checkout -b no-base-url-branch
           
@@ -34,7 +34,7 @@ jobs:
           
           # 提交更改
           git add nuxt.config.ts
-          git commit -m "chore: sync from main and remove baseURL"
+          git commit -m "chore: sync from master and remove baseURL"
           
           # 强制推送更新
           git push -f origin no-base-url-branch
