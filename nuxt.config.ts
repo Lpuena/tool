@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     fallback: 'light',
   },
   app: {
-    baseURL: '/tool/',
+    // baseURL: '/tool/',
     head: {
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/tool/favicon.ico' },
@@ -27,11 +27,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    preset: 'static',
-    prerender: {
-      crawlLinks: false, // 禁用路由抓取
-      routes: [], // 明确指定需要预渲染的路由
-    },
+    // preset: 'cloudflare-pages',
   },
   devtools: { enabled: true },
   compatibilityDate: '2025-01-03',
