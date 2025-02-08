@@ -1,3 +1,12 @@
+<script setup lang="ts">
+const _route = useRoute()
+useHead({
+  titleTemplate: (title) => {
+    return title ? `${title} - Tool` : 'Tool'
+  },
+})
+</script>
+
 <template>
   <div class="min-h-screen flex flex-col bg-gradient-to-b">
     <!-- 导航栏 -->
