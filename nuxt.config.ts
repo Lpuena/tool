@@ -27,6 +27,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
+    preset: 'static',
     prerender: {
       crawlLinks: false, // 禁用路由抓取
       routes: [], // 明确指定需要预渲染的路由
