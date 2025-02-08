@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     fallback: 'light',
   },
   app: {
-    // baseURL: '/tool/',
+    baseURL: '/tool/',
     head: {
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/tool/favicon.ico' },
