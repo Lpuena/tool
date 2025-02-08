@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     fallback: 'light',
   },
   app: {
-    baseURL: '/tool/',
+    // baseURL: removed for this branch,
     head: {
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/CarbonCode.png' },
